@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './modules/users/entities/user.entity';
 import { UsersModule } from './modules/users/users.module';
+import { ClassroomModule } from './modules/classesroom/classesroom.module';
+import { Classroom } from './modules/classesroom/entities/classroom.entity';
+
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -20,9 +23,10 @@ dotenv.config();
           rejectUnauthorized: false,
         },
       },
-      models: [User],
+      models: [User, Classroom],
     }),
     UsersModule,
+    ClassroomModule,
   ],
 })
 export class AppModule {}
