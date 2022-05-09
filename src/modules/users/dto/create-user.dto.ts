@@ -1,4 +1,11 @@
-import { IsNotEmpty, IsString, IsEmail } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  IsEmail,
+  IsEnum,
+} from 'class-validator';
+import { UserRole } from '../entities/user.enums';
 
 export class CreateUserDto {
   @IsString()
@@ -17,6 +24,11 @@ export class CreateUserDto {
   @IsNotEmpty()
   registration_number: string;
 
-  @IsString()
+  @IsEnum(UserRole, {
+    message: 'user role must be either student or professor',
+  })
   role: string;
+
+  @IsNumber()
+  classroom: number;
 }
