@@ -7,7 +7,9 @@ import {
   AutoIncrement,
   UpdatedAt,
   CreatedAt,
+  HasOne,
 } from 'sequelize-typescript';
+import { Classroom } from 'src/modules/classesroom/entities/classroom.entity';
 import { UserRole } from './user.enums';
 
 @Table({ tableName: 'users' })
@@ -15,7 +17,7 @@ export class User extends Model {
   @PrimaryKey
   @AutoIncrement
   @Column({ type: DataType.INTEGER })
-  id: string;
+  id: number;
 
   @Column({ type: DataType.STRING })
   name: string;
@@ -31,6 +33,9 @@ export class User extends Model {
 
   @Column({ type: DataType.STRING, defaultValue: UserRole.STUDENT })
   role: string;
+
+  @HasOne(() => Classroom)
+  classroom: Classroom;
 
   @CreatedAt
   created_at: Date;
