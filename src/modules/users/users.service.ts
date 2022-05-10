@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Classroom } from '../classroom/entities/classroom.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -14,14 +13,20 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
+    // TODO: validate fields
     const hash = await bcrypt.hash(createUserDto.password, 10);
-    return this.userModel.create({
+
+    const user = await this.userModel.create({
       name: createUserDto.name,
       email: createUserDto.email,
       password: hash,
       registration_number: createUserDto.registration_number,
       role: createUserDto.role,
     });
+
+    user.password = undefined;
+
+    return user;
   }
 
   async findAll(): Promise<User[]> {
@@ -35,17 +40,22 @@ export class UsersService {
       where: {
         id,
       },
-      include: [{ model: Classroom, attributes: { exclude: ['password'] } }],
+      include: [
+        { association: 'classroom', attributes: { exclude: ['password'] } },
+      ],
     });
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
-    const user = await this.userModel.findByPk(id, { rejectOnEmpty: true });
-    user.update({
-      name: updateUserDto.name,
-      classroom: updateUserDto.classroom,
-    });
-    return user;
+    delete updateUserDto.password;
+
+    const [numberOfAffectedRows, [updatedPatient]] =
+      await this.userModel.update(
+        { ...updateUserDto },
+        { where: { id }, returning: true },
+      );
+
+    return { numberOfAffectedRows, updatedPatient };
   }
 
   async remove(id: string): Promise<void> {
