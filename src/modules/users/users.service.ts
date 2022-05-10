@@ -49,13 +49,12 @@ export class UsersService {
   async update(id: number, updateUserDto: UpdateUserDto) {
     delete updateUserDto.password;
 
-    const [numberOfAffectedRows, [updatedPatient]] =
-      await this.userModel.update(
-        { ...updateUserDto },
-        { where: { id }, returning: true },
-      );
+    const [numberOfAffectedRows, [updatedUser]] = await this.userModel.update(
+      { ...updateUserDto },
+      { where: { id }, returning: true },
+    );
 
-    return { numberOfAffectedRows, updatedPatient };
+    return { numberOfAffectedRows, updatedUser };
   }
 
   async remove(id: string): Promise<void> {

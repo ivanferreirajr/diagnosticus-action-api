@@ -10,6 +10,10 @@ import { ExamsModule } from './modules/exams/exams.module';
 import { Exam } from './modules/exams/entities/exam.entity';
 import { ComplaintsModule } from './modules/complaints/complaints.module';
 import { Complaint } from './modules/complaints/entities/complaint.entity';
+import { EmergencyCaseModule } from './modules/emergency-case/emergency-case.module';
+import { EmergencyCase } from './modules/emergency-case/entities/emergency-case.entity';
+import { SimulationsModule } from './modules/simulations/simulations.module';
+import { Simulation } from './modules/simulations/entities/simulation.entity';
 
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -28,13 +32,23 @@ dotenv.config();
           rejectUnauthorized: false,
         },
       },
-      models: [User, Classroom, Patient, Exam, Complaint],
+      models: [
+        User,
+        Classroom,
+        Patient,
+        Exam,
+        Complaint,
+        Simulation,
+        EmergencyCase,
+      ],
     }),
     UsersModule,
     ClassroomModule,
     PatientsModule,
     ExamsModule,
     ComplaintsModule,
+    EmergencyCaseModule,
+    SimulationsModule,
   ],
 })
 export class AppModule {}

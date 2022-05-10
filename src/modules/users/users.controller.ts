@@ -34,14 +34,14 @@ export class UsersController {
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    const { numberOfAffectedRows, updatedPatient } =
+    const { numberOfAffectedRows, updatedUser } =
       await this.usersService.update(+id, updateUserDto);
 
     if (numberOfAffectedRows === 0) {
-      throw new NotFoundException("This Patient doesn't exist");
+      throw new NotFoundException("This User doesn't exist");
     }
 
-    return updatedPatient;
+    return updatedUser;
   }
 
   @HttpCode(204)
