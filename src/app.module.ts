@@ -14,8 +14,10 @@ import { EmergencyCaseModule } from './modules/emergency-case/emergency-case.mod
 import { EmergencyCase } from './modules/emergency-case/entities/emergency-case.entity';
 import { SimulationsModule } from './modules/simulations/simulations.module';
 import { Simulation } from './modules/simulations/entities/simulation.entity';
+import { CidModule } from './modules/cid/cid.module';
 
 import * as dotenv from 'dotenv';
+import { Cid } from './modules/cid/entities/cid.entity';
 dotenv.config();
 
 @Module({
@@ -40,6 +42,7 @@ dotenv.config();
         Complaint,
         Simulation,
         EmergencyCase,
+        Cid,
       ],
     }),
     UsersModule,
@@ -49,6 +52,7 @@ dotenv.config();
     ComplaintsModule,
     EmergencyCaseModule,
     SimulationsModule,
+    CidModule,
   ],
 })
 export class AppModule {}
