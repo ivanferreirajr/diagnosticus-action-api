@@ -5,7 +5,15 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe({ errorHttpStatusCode: 422 }));
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      errorHttpStatusCode: 422,
+      transform: true,
+      skipNullProperties: true,
+      skipMissingProperties: true,
+    }),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('Diagnosticus Action - API Rest')
@@ -16,9 +24,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
 
-  await app.listen(process.env.PORT || 3000);
-
-  console.log(`Application is running on: ${await app.getUrl()}`);
+  await app.listen(process.env.PORT || 3000, async () => {
+    console.log(`Application is running on: ${await app.getUrl()}`);
+  });
 }
 
 bootstrap();
