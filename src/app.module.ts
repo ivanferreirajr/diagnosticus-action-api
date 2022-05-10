@@ -4,9 +4,14 @@ import { User } from './modules/users/entities/user.entity';
 import { UsersModule } from './modules/users/users.module';
 import { ClassroomModule } from './modules/classesroom/classesroom.module';
 import { Classroom } from './modules/classesroom/entities/classroom.entity';
+import { PatientsModule } from './modules/patients/patients.module';
+import { Patient } from './modules/patients/entities/patient.entity';
+import { ExamsModule } from './modules/exams/exams.module';
+import { Exam } from './modules/exams/entities/exam.entity';
+import { ComplaintsModule } from './modules/complaints/complaints.module';
+import { Complaint } from './modules/complaints/entities/complaint.entity';
 
 import * as dotenv from 'dotenv';
-
 dotenv.config();
 
 @Module({
@@ -23,10 +28,13 @@ dotenv.config();
           rejectUnauthorized: false,
         },
       },
-      models: [User, Classroom],
+      models: [User, Classroom, Patient, Exam, Complaint],
     }),
     UsersModule,
     ClassroomModule,
+    PatientsModule,
+    ExamsModule,
+    ComplaintsModule,
   ],
 })
 export class AppModule {}
