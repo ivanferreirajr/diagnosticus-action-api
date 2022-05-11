@@ -9,7 +9,7 @@ import {
   CreatedAt,
   HasOne,
 } from 'sequelize-typescript';
-import { Classroom } from 'src/modules/classesroom/entities/classroom.entity';
+import { Classroom } from 'src/modules/classroom/entities/classroom.entity';
 import { UserRole } from './user.enums';
 
 @Table({ tableName: 'users' })

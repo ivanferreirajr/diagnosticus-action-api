@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ClassroomService } from './classesroom.service';
-import { ClassroomController } from './classesroom.controller';
+import { ClassroomService } from './classroom.service';
+import { ClassroomController } from './classroom.controller';
 import { Classroom } from './entities/classroom.entity';
 import { SequelizeModule } from '@nestjs/sequelize';
 

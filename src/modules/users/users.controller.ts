@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   HttpCode,
+  NotFoundException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -32,8 +33,15 @@ export class UsersController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    const { numberOfAffectedRows, updatedUser } =
+      await this.usersService.update(+id, updateUserDto);
+
+    if (numberOfAffectedRows === 0) {
+      throw new NotFoundException("This User doesn't exist");
+    }
+
+    return updatedUser;
   }
 
   @HttpCode(204)
