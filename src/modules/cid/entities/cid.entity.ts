@@ -4,6 +4,8 @@ import {
   Model,
   PrimaryKey,
   DataType,
+  CreatedAt,
+  UpdatedAt,
 } from 'sequelize-typescript';
 
 @Table({ tableName: 'cid' })
@@ -20,4 +22,10 @@ export class Cid extends Model {
 
   @Column({ type: DataType.STRING })
   description: string;
+
+  @CreatedAt
+  created_at: Date;
+
+  @UpdatedAt
+  updated_at: Date;
 }
