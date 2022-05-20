@@ -16,10 +16,10 @@ import { SimulationsModule } from './modules/simulations/simulations.module';
 import { Simulation } from './modules/simulations/entities/simulation.entity';
 import { CidModule } from './modules/cid/cid.module';
 
-import * as dotenv from 'dotenv';
 import { Cid } from './modules/cid/entities/cid.entity';
 import { DiagnosisModule } from './modules/diagnosis/diagnosis.module';
 import { Diagnosis } from './modules/diagnosis/entities/diagnosis.entity';
+import * as dotenv from 'dotenv';
 dotenv.config();
 
 @Module({
