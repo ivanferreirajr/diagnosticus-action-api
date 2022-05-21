@@ -2,6 +2,10 @@
 
 Build with [Nest](https://github.com/nestjs/nest) framework.
 
+## Requirements
+
+- Node.js
+
 ## Installation
 
 ```bash
