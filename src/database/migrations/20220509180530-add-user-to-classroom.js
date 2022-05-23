@@ -2,15 +2,16 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.addColumn('users', 'classroom', {
+    return queryInterface.addColumn('users', 'id_classroom', {
       type: Sequelize.INTEGER,
-      references: { model: 'classrooms', key: 'id' },
-      allowNull: true,
       onUpdate: 'CASCADE',
+      onDelete: 'SET NULL',
+      defaultValue: null,
+      after: 'can_maintain_system',
     });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('users', 'classroom');
+    return queryInterface.removeColumn('users', 'id_classroom');
   },
 };
