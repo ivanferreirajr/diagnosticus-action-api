@@ -4,13 +4,15 @@ import { UsersModule } from '../users/users.module';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtStrategyService } from './jwt-strategy/jwt-strategy.service';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Module({
   imports: [
     JwtModule.register({
-      secret: 'abcd123456',
+      secret: process.env.JWTKEY,
       signOptions: {
-        expiresIn: '60s',
+        expiresIn: process.env.TOKEN_EXPIRATION,
       },
     }),
     UsersModule,
