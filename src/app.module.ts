@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { AuthModule } from './modules/auth/auth.module';
 import { User } from './modules/users/entities/user.entity';
 import { UsersModule } from './modules/users/users.module';
 import { ClassroomModule } from './modules/classroom/classroom.module';
@@ -57,6 +58,7 @@ dotenv.config();
     SimulationsModule,
     CidModule,
     DiagnosisModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
