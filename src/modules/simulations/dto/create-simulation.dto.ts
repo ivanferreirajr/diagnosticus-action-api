@@ -1,5 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDateString, IsString, IsBoolean, IsNumber } from 'class-validator';
+import {
+  IsDateString,
+  IsString,
+  IsBoolean,
+  IsNumber,
+  IsOptional,
+} from 'class-validator';
 
 export class CreateSimulationDto {
   @IsNumber()
@@ -11,10 +17,12 @@ export class CreateSimulationDto {
   id_emergency_case: number;
 
   @IsNumber()
+  @IsOptional()
   @ApiProperty()
   score: number;
 
   @IsString()
+  @IsOptional()
   @ApiProperty()
   observation: string;
 

@@ -5,7 +5,7 @@ export class CreateComplaintDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  name: number;
+  name: string;
 
   @IsNotEmpty()
   @ApiProperty()

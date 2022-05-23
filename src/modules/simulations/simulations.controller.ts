@@ -21,7 +21,7 @@ import { RoleGuard } from '../auth/role/role.guard';
 export class SimulationsController {
   constructor(private readonly simulationsService: SimulationsService) {}
 
-  @Role('professor')
+  @Role('student')
   @UseGuards(JwtGuard, RoleGuard)
   @Post()
   @ApiOperation({ summary: 'Create a simulation', tags: ['Simulation'] })

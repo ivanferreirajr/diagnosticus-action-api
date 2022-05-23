@@ -5,7 +5,7 @@ export class CreateClassroomDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  name: number;
+  name: string;
 
   @IsString()
   @IsNotEmpty()
