@@ -3,7 +3,7 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
 } from '@nestjs/common';
@@ -34,7 +34,7 @@ export class ClassroomController {
     return this.classroomService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   @ApiOperation({ summary: 'Update a classroom', tags: ['Classrooms'] })
   update(
     @Param('id') id: string,

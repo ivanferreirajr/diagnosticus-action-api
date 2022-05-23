@@ -3,7 +3,7 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
   HttpCode,
@@ -36,7 +36,7 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   @ApiOperation({ summary: 'Update a user', tags: ['User'] })
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     const { numberOfAffectedRows, updatedUser } =

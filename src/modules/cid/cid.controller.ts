@@ -3,9 +3,9 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { ApiOperation } from '@nestjs/swagger';
 import { CidService } from './cid.service';
@@ -34,7 +34,7 @@ export class CidController {
     return this.cidService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   @ApiOperation({ summary: 'Update a cid', tags: ['Cid'] })
   update(@Param('id') id: string, @Body() updateCidDto: UpdateCidDto) {
     return this.cidService.update(id, updateCidDto);

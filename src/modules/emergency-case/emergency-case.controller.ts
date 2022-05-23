@@ -3,7 +3,7 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
 } from '@nestjs/common';
@@ -43,7 +43,7 @@ export class EmergencyCaseController {
     return this.emergencyCaseService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   @ApiOperation({
     summary: 'Update a emergency case',
     tags: ['Emergency Case'],
