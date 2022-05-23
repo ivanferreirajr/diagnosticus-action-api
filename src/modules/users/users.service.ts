@@ -13,7 +13,7 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    // TODO: validate fields
+    // TODO: validade email
     const hash = await bcrypt.hash(createUserDto.password, 10);
 
     const user = await this.userModel.create({
@@ -39,6 +39,17 @@ export class UsersService {
     return this.userModel.findOne({
       where: {
         id,
+      },
+      include: [
+        { association: 'classroom', attributes: { exclude: ['password'] } },
+      ],
+    });
+  }
+
+  findByEmail(email: string): Promise<User> {
+    return this.userModel.findOne({
+      where: {
+        email,
       },
       include: [
         { association: 'classroom', attributes: { exclude: ['password'] } },
